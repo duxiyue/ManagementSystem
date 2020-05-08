@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>サブ画面用レイアウト</title>
+        <meta th:include="common/external :: external" th:remove="tag"/>
+    </head>
+    <body>
+        <div id="cmn-sub-header-container" layout:frament="header">
+            <th:block layout:fragment="header">header</th:block>
+        </div>
+        <div th:replace="common/messages :: messages"></div>
+        <div id="cmn-sub-body-container" layout:frament="bodyContent">
+            <th:block layout:fragment="body">body</th:block>
+        </div>
+    </body>
+</html>

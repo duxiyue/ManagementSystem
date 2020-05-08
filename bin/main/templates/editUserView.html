@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="common/subLayout">
+    <head>
+        <title>管理システム </title>
+        <script type="text/javascript" th:inline="javascript" charset="UTF-8" src="../static/js/editUserView.js" th:src="@{/js/editUserView.js}"></script>
+    </head>
+    <body>
+        <th:block layout:fragment="header">ユーザー登録</th:block>
+        <div layout:fragment="body">
+            <form id="editUserView" th:action="@{/userView/regist}" method="post">
+                <input type="hidden" th:value="${#httpServletRequest.getParameter('success')}" id="success">
+                <th:block th:object="${userForm}">
+                    <div class="body-inner-container">
+                        <div>
+                            <table >
+                                <col style="width: 100px;">
+                                <col style="width: 300px;">
+                                <tr>
+                                    <th align="left">ユーザコード</th>
+                                    <td th:if="*{userEntity.userCode == null}">
+                                        <input type="text" th:field="*{userEntity.userCode}" style="width: 290px;" maxlength="10" tabindex="1">
+                                    </td>
+                                    <td th:if="*{userEntity.userCode != null}" th:text="*{userEntity.userCode}">
+                                    <input type="hidden" th:field="*{userEntity.userCode}"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th align="left">ユーザ名</th>
+                                    <td>
+                                        <input type="text" th:id="userName" th:field="*{userEntity.userName}" th:value="*{userEntity.userName}" style="width: 290px;" maxlength="10" tabindex="2">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th align="left">パースワード</th>
+                                    <td>
+                                        <input type="password" style="width: 290px;" maxlength="20" th:field="*{password}" tabindex="3">
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <div style="position:absolute; right:10px; bottom:20px;">
+                                <input type="submit" value="登録" tabindex="4" class="cmn-button-small"/>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" th:field="*{userEntity.userAuth}"/>
+                    <input type="hidden" th:field="*{userEntity.authComment}"/>
+                    <input type="hidden" th:field="*{insertEditFlg}"/>
+                </th:block>
+            </form>
+        </div>
+    </body>
+</html>

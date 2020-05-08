@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="common/layout">
+    <head>
+        <title>管理システム </title>
+        <script type="text/javascript" th:inline="javascript" charset="UTF-8" src="../static/js/userView.js" th:src="@{/js/userView.js}"></script>
+    </head>
+    <body>
+        <th:block layout:fragment="header">ユーザー管理一覧</th:block>
+        <div layout:fragment="body">
+            <form id="userView" th:action="@{/userView}" method="post">
+                <th:block th:object="${userForm}">
+                    <div class="body-inner-container">
+                        <div style="height: 300px;">
+                            <input type="button" th:onclick="javascript:insertUser()" th:value="ユーザ新規登録" class="cmn-button-middle">
+                            <table>
+                                <col style="width: 30px;">
+                                <col style="width: 150px;">
+                                <col style="width: 200px;">
+                                <col style="width: 200px;">
+                                <col style="width: 40px;">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>ユーザコード</th>
+                                        <th>ユーザ名</th>
+                                        <th>権限</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="userEntityList, index:*{userEntityList}">
+                                        <td align="center" th:text="${index.index+1}"></td>
+                                        <td th:text="${userEntityList.userCode}"></td>
+                                        <td th:text="${userEntityList.userName}"></td>
+                                        <td th:text="${userEntityList.authComment}"></td>
+                                        <td align="center"><input type="button" th:onclick="javascript:selectUser([[${userEntityList.userCode}]]);"
+                                        th:value="選択" style="width: 36px; height: 20px;font-size: 12px;"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </th:block>
+            </form>
+        </div>
+    </body>
+</html>

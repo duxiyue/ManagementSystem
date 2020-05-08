@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="common/layout">
+    <head>
+        <title>管理システム </title>
+    </head>
+    <body>
+        <th:block layout:fragment="header">勤怠管理</th:block>
+        <div layout:fragment="body">
+            <form id="workMonthView" th:action="@{/workMonthView}" method="post">
+                
+            </form>
+        </div>
+    </body>
+</html>

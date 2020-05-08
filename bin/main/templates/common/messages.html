@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+    </head>
+    <body>
+        <div class="cmn-system-messages" th:fragment="messages">
+            <ul th:classappend="${#lists.isEmpty(msgList) ? 'no-nessage' : ''}">
+                <th:block th:each="msg:${msgList}">
+                    <li th:if="${msg.level == 'errors'}" class="errorMessage" th:text="${msg.message}">
+                    <li th:if="${msg.level == 'warning'}" class="warnMessage" th:text="${msg.message}">
+                    <li th:if="${msg.level == 'info'}" class="infoMessage" th:text="${msg.message}">
+                </th:block>
+            </ul>
+        </div>
+    </body>
+</html>

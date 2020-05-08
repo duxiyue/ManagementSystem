@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ManagementSystem.web.mapper.MenuMapper" >
+    <resultMap id="BaseResultMap" type="com.ManagementSystem.web.entity.MenuEntity" >
+        <id column="MENU_ID" property="menuId" jdbcType="VARCHAR" />
+        <result column="MENU_NAME" property="menuName" jdbcType="VARCHAR" />
+        <result column="LEVEL" property="level" jdbcType="INTEGER" />
+        <result column="VIEW_ORDER" property="viewOrder" jdbcType="INTEGER" />
+        <result column="AUTH_CODE" property="authCode" jdbcType="INTEGER" />
+        <result column="MENU_CODE_MIN" property="menuCodeMin" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        MENU_ID, MENU_NAME, LEVEL, VIEW_ORDER, AUTH_CODE, MENU_CODE_MIN
+    </sql>
+
+    <select id="getMenuList" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+            t_menu
+        <where>
+            <if test="level != null">LEVEL = #{level}</if>
+            <if test="authCode != null">AND AUTH_CODE = #{authCode}</if>
+            <if test="menuCodeMin != null">AND MENU_CODE_MIN = #{menuCodeMin}</if>
+        </where>
+        ORDER BY
+            VIEW_ORDER ASC
+    </select>
+
+    <select id="getByMenuCode" parameterType="String" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+            t_menu
+        WHERE
+            MENU_ID = #{menuId}
+    </select>
+
+    <insert id="insert" parameterType="MenuEntity">
+        INSERT INTO
+            t_menu
+            (MENU_ID, MENU_NAME, LEVEL, VIEW_ORDER, AUTH_CODE, MENU_CODE_MIN)
+        VALUES
+            (#{menuId}, #{menuName}, #{level}, #{viewOrder}, #{authCode}, #{menuCodeMin})
+    </insert>
+
+    <update id="update" parameterType="MenuEntity">
+        UPDATE
+            t_menu
+        SET
+            <if test="menuName != null">MENU_NAME = #{menuName},</if>
+            <if test="level != null">LEVEL = #{level},</if>
+            <if test="viewOrder != null">VIEW_ORDER = #{viewOrder},</if>
+            <if test="authCode != null">AUTH_CODE = #{authCode},</if>
+            <if test="menuCodeMin != null">MENU_CODE_MIN = #{menuCodeMin}</if>
+        WHERE
+            MENU_ID = #{menuId}
+    </update>
+
+    <delete id="delete" parameterType="String" >
+        DELETE FROM
+            t_menu
+        WHERE
+            MENU_ID =#{menuId}
+    </delete>
+</mapper>

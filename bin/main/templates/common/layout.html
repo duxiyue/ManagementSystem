@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>メイン画面用レイアウト</title>
+        <meta th:include="common/external :: external" th:remove="tag"/>
+        <script type="text/javascript" charset="UTF-8" src="../../static/js/common/layout.js" th:src="@{/js/common/layout.js}"></script>
+    </head>
+    <body>
+        <div id="cmn-header-container" layout:frament="header">
+            <div class="header-inner-container">
+                <th:block layout:fragment="header">header</th:block>
+            </div>
+            <div th:inline="text" class="cmn-right-val">
+                [[${@loginUserDto.userName}]]([[${@loginUserDto.userCode}]])
+            </div>
+        </div>
+        <div id="cmn-menu-container" layout:frament="menu">
+            <th:block layout:fragment="menu">
+                <div class="menu">
+                    <ul>
+                        <li th:each="topMenuList:${@topMenuDto.topMenuList}">
+                            <a th:id="${topMenuList.menuEntity.menuId}" th:href="@{#}" th:text="${topMenuList.menuEntity.menuName}"></a>
+                            <ul>
+                                <li th:each="menuList:${topMenuList.menuList}">
+                                    <a th:id="${menuList.menuId}" th:href="@{#}" th:text="${menuList.menuName}"></a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </th:block>
+        </div>
+        <th:block th:unless="${#strings.indexOf(#httpServletRequest.requestURI, '/login') ge 0}">
+            <div th:replace="common/messages::messages"></div>
+        </th:block>
+        <div id="cmn-body-container" layout:frament="bodyContent">
+            <th:block layout:fragment="body">body</th:block>
+        </div>
+        <th:block th:unless="${#strings.indexOf(#httpServletRequest.requestURI, '/login') ne 0}">
+            <div layout:frament="footer">
+                <th:block layout:fragment="footer">
+                    <div style="position:absolute; right:30px; bottom:30px;">
+                        <a id="login" th:href="@{/login}" th:text="ログイン"></a>
+                    </div>
+                </th:block>
+            </div>
+        </th:block>
+    </body>
+</html>

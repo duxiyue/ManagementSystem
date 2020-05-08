@@ -1,0 +1,404 @@
+@charset "UTF-8";
+/*******************************************************************
+初期化
+ブラウザが設定するデフォルトの余白をクリアする
+********************************************************************/
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-size: 12px;
+    font-family: "Meiryo UI";
+    font-weight: normal;
+    color: #111111;
+    background-image: url("../../images/mainLayout.gif");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+input, select, textarea, button {
+    font-size: 12px;
+    font-family: "Meiryo UI";
+    color: #111111;
+}
+
+/*******************************************************************
+メインウィンドウのコンテンツ用背景色
+********************************************************************/
+.cmn-main-contents-bg {
+    padding: 2px;
+    border: 2px solid #54d5e4;
+    background-color: #ebf3fa
+}
+
+/*******************************************************************
+ヘッダー定義
+********************************************************************/
+#cmn-header-container {
+    height: 50px;
+    width: 100%;
+    position: relative;
+}
+
+#cmn-header-container .header-inner-container {
+    font-size: 20px;
+    position: absolute;
+    padding: 10px 0px 0px 0px;
+    height: 40px;
+    width: 100%;
+    margin: 0 auto;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+#cmn-sub-header-container {
+    height: 28px;
+    line-height: 28px;
+    font-size: 20px;
+    font-weight: normal; 
+    padding: 5px;
+    text-align: left;
+}
+
+/*******************************************************************
+ボディ定義
+********************************************************************/
+#cmn-body-container {
+    width: 100%;
+    position: relative;
+}
+
+#cmn-body-container .body-inner-container {
+    font-size: 12px;
+    position: absolute;
+    padding: 40px 0px 0px 10px;
+    width: 98%;
+    margin: 0 auto;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/*******************************************************************
+メニュー定義
+********************************************************************/
+#cmn-menu-container {
+    width: 100%;
+    height : 26px;
+    background-color : #0080ff;
+    position: absolute;
+    z-index: 10;
+}
+
+.menu {
+    border: 2px solid #c0c0c0;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.menu a {
+    text-decoration: none;
+}
+
+.menu ul, .menu li {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    float: left;
+}
+
+.menu > ul > li > ul {
+	position: absolute;
+    display: none;
+}
+
+.menu > ul > li > ul > li {
+    float: none;
+}
+
+.menu > ul > li:hover ul {
+    display: block;
+}
+
+.menu > ul > li > a {
+    width: 120px;
+    line-height: 22px;
+    color: black;
+    background-color: #0080ff;
+    text-align: center;
+    border-left: 1px solid #bbbbff;
+    display: block;
+}
+
+.menu > ul > li:first-child > a {
+    border-left: none;
+}
+
+.menu > ul > li > a:hover {
+    color: #ff00ff;
+    background-color: #bbccff;
+}
+
+.menu > ul > li > ul > li > a {
+    width: 120px;
+    line-height: 22px;
+    color: #445566;
+    background-color: #0080ff;
+    text-align: center;
+    border-left: 1px solid #c0c0c0;
+    border-top: none;
+    display: block;
+}
+
+.menu > ul > li > ul > li:first-child > a {
+    border-top: 1px solid #c0c0c0;
+}
+
+.menu > ul > li > ul > li > a:hover {
+    color: #aa44ff;
+    background-color: #ccddff;
+}
+
+/*******************************************************************
+テーブル項目
+********************************************************************/
+table {
+	border-collapse: collapse;
+	margin: 0 auto;
+}
+
+table td, table th {
+	border: 1px solid #cad9ea;
+	color: #666666;
+	height: 20px;
+}
+
+table thead th {
+	background-color: #cce8eb;
+}
+
+table tr:nth-child(odd) {
+	background: #ffffff;
+}
+
+table tr:nth-child(even) {
+	background: #f5fafa;
+}
+
+
+/*******************************************************************
+入力テキスト項目
+    IMEせいぎょうについて　初期設定はIME:activeとし、数値や半角英数の項目のみ上書きでime-mode:disabledとする。
+********************************************************************/
+textarea {
+    border-radius: 4px;        /* 角丸 */
+    padding: 4px;
+    ime-mode: active;          /* IME:初期値日本語入力 */
+    overflow: auto;
+}
+
+input[type="text"] {
+    border-radius: 4px;        /* 角丸 */
+    padding: 0 4px;
+    ime-mode: active;          /* IME:初期値日本語入力 */
+    width: 120px;
+    height: 20px;
+}
+
+input[type="password"] {
+    border-radius: 4px;        /* 角丸 */
+    padding: 0 4px;
+    width: 120px;
+    height: 20px;
+}
+
+/* 金額入力 */
+input[type="text"].cmn-en {
+    text-align: right; 
+    font-size: 13px;
+    ime-mode: disabled;          /* IME:英数字入力のみ */
+}
+
+/* 日付入力 */
+input[type="text"].cmn-date {
+    text-align: center; 
+    font-size: 13px;
+    ime-mode: disabled;          /* IME:英数字入力のみ */
+    width: 77px;
+}
+
+/*******************************************************************
+ボタン設定
+********************************************************************/
+input[type="submit"],
+input[type="button"],
+button {
+	border: 1px #0080ff solid 3px;
+	display: inline-block;
+	width: 110px;
+	height: 27px;
+	text-align: center;
+	cursor: pointer;
+	color: #0080ff;
+}
+
+/* 非活性の場合 */
+input[type="submit"]:disabled,
+input[type="button"]:disabled,
+button:disabled {
+    color: #6d6d6d;
+    cursor: auto;
+}
+
+/* 共通ボタン */
+.cmn-button-small,
+.cmn-button-middle,
+.cmn-button-large,
+.cmn-button-x-large {
+    color: #0080ff !important;
+}
+
+/* ボタン（小） */
+.cmn-button-small {
+    width: 60px !important;
+    height: 20px !important;
+    font-size: 12px !important;
+}
+
+/* ボタン（中） */
+.cmn-button-middle {
+    width: 90px !important;
+    height: 22px !important;
+    font-size: 12px !important;
+}
+
+/* ボタン（大） */
+.cmn-button-large {
+    width: 120px !important;
+    height: 24px !important;
+    font-size: 14px !important;
+}
+
+/* ボタン（特大） */
+.cmn-button-x-large {
+    width: 150px !important;
+    height: 26px !important;
+    font-size: 16px !important;
+}
+
+/*ヘッダ内のボタン*/
+.cmn-button-header {
+	width: 80px !important;
+	height: 22px !important;
+	font-size: 12px !important;
+}
+
+/*******************************************************************
+チェックボックス、ラジオボタン設定
+********************************************************************/
+input[type="checkbox"],
+input[type="radio"] {
+	padding: 2px;
+}
+
+ul {
+	list-style: none;
+}
+
+/*******************************************************************
+画像項目
+********************************************************************/
+img {
+	border: none;
+}
+
+/*******************************************************************
+要素配置
+********************************************************************/
+.cmn-float-right {
+    float: right;
+}
+
+.cmn-float-left {
+    float: left;
+}
+
+/*******************************************************************
+文言：水平方向設定
+********************************************************************/
+.cmn-left-val {
+	text-align: left;
+}
+
+.cmn-center-val {
+    text-align: center;
+}
+
+.cmn-right-val {
+    text-align: right;
+}
+
+/*******************************************************************
+メッセージ領域用
+********************************************************************/
+.cmn-system-message ul:not(.no-nessage) {
+	border: solid 1px #cccccc;
+}
+
+.cmn-system-messages li {
+	background: #ffffbb 0.5em 5px no-repeat;
+	font-size: 1.1em;
+	padding: 5px 3px 3px 30px;
+	list-style-type: none;
+}
+
+.cmn-system-messages li.top {
+	cursor: pointer;
+	font-size: 1.2em;
+	padding: 3px 5px 5px 30px;
+}
+
+.cmn-system-messages li.single {
+    font-size: 1.2em;
+    padding: 3px 5px 5px 10px;
+}
+
+.cmn-system-messages li.over {
+    background-color: #88eeff;
+}
+
+.infoMessage {
+    color: #0000ff !important;
+}
+
+.infoMessage:before {
+	margin-right: 4px;
+	content: url('');
+}
+
+.warnMessage {
+    color: #000000 !important;
+}
+
+.warnMessage:before {
+    margin-right: 4px;
+    content: url('');
+}
+
+.errorMessage {
+    color: #ff0000 !important;
+}
+
+.warnMessage:before {
+    margin-right: 4px;
+    content: url('');
+}

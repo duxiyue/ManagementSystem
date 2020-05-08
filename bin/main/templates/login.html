@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>管理システム </title>
+        <style type="text/css">
+            body {
+                background-image: url("../../images/mainLayout.gif");
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+            }
+            #login-table {
+                display: inline-block;
+            }
+
+            #login-table td {
+                border: none;
+                background-color: transparent;
+                height: 28px;
+            }
+
+            input[type="text"], input[type="password"] {
+                ime-mode: disabled;
+                width: 160px;
+            }
+
+            input[type="submit"] {
+                border: 1px #0080ff solid 3px;
+                display: inline-block;
+                width: 60px;
+                height: 20px;
+                text-align: center;
+                cursor: pointer;
+                color: #0080ff;
+                font-size: 12px;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="font-size: 20px;" th:inline="text">ログイン</div>
+        <form id='login' th:action="@{/login}" method="post">
+            <div style="position:absolute; right:60px; bottom:60px;">
+                <table id="login-table">
+                    <tr>
+                        <td>ユーザー : </td>
+                        <td><input type="text" name="username" maxlength="10" size="20" tabindex="1"/></td>
+                    </tr>
+                    <tr>
+                        <td>パスワード : </td>
+                        <td><input type="password" name="password" maxlength="20" size="20" tabindex="2"/></td>
+                    </tr>
+                    <tr align="right">
+                        <td colspan="2"><input type="submit" value="ログイン" tabindex="3"/></td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+        <div th:if="${param.error}">ユーザー名またはパスワードは違います。</div>
+        <div th:if="${param.logout}">ログオフしました。</div>
+    </body>
+</html>

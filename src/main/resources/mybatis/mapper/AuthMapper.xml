@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ManagementSystem.web.mapper.AuthMapper" >
+    <resultMap id="BaseResultMap" type="com.ManagementSystem.web.entity.AuthEntity" >
+        <id column="AUTH_CODE" property="authCode" jdbcType="INTEGER" />
+        <result column="AUTH_COMMENT" property="authComment" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        AUTH_CODE, AUTH_COMMENT
+    </sql>
+
+    <select id="getAll" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+            t_auth
+    </select>
+
+    <select id="getByAuthCode" parameterType="INTEGER" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM
+            t_auth
+        WHERE
+            AUTH_CODE = #{authCode}
+    </select>
+
+    <insert id="insert" parameterType="AuthEntity">
+        INSERT INTO
+            t_auth
+            (AUTH_CODE, AUTH_COMMENT)
+        VALUES
+            (#{authCode}, #{authComment})
+    </insert>
+
+    <update id="update" parameterType="AuthEntity">
+        UPDATE
+            t_auth
+        SET
+            <if test="password != null">AUTH_COMMENT = #{authComment}</if>
+        WHERE
+            AUTH_CODE = #{authCode}
+    </update>
+
+    <delete id="delete" parameterType="INTEGER" >
+        DELETE FROM
+            t_auth
+        WHERE
+            AUTH_CODE = #{authCode}
+    </delete>
+</mapper>

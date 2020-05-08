@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="common/layout">
+    <head>
+        <title>管理システム </title>
+    </head>
+    <body>
+        <th:block layout:fragment="header">社員情報一覧</th:block>
+        <div layout:fragment="body">
+            <form id="employeeListView" th:action="@{/employeeListView}" method="post">
+
+
+
+
+
+
+
+
+
+
+            </form>
+        </div>
+    </body>
+</html>
