@@ -17,7 +17,7 @@ public class WorkTimeReportViewController {
 	public ModelAndView workTimeReportView() {
 
 		ModelAndView mav = new ModelAndView();
-		mav .setViewName("workTimeReportView");
+		mav.setViewName("workTimeReportView");
 
 		return mav;
 	}

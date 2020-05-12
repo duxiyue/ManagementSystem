@@ -17,7 +17,7 @@ public class TravelExpenseViewController {
 	public ModelAndView travelExpenseView() {
 
 		ModelAndView mav = new ModelAndView();
-		mav .setViewName("travelExpenseView");
+		mav.setViewName("travelExpenseView");
 
 		return mav;
 	}
