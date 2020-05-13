@@ -9,7 +9,7 @@
         <script type="text/javascript" th:inline="javascript" charset="UTF-8" src="../static/js/userView.js" th:src="@{/js/userView.js}"></script>
     </head>
     <body>
-        <th:block layout:fragment="header">ユーザー管理一覧</th:block>
+        <th:block layout:fragment="header">ユーザー管理</th:block>
         <div layout:fragment="body">
             <form id="userView" th:action="@{/userView}" method="post">
                 <th:block th:object="${userForm}">
